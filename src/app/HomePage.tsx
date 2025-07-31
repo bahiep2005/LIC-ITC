@@ -137,6 +137,36 @@ export default function ImageStack() {
                     </button>
                 </div>
             </section>
+            {/* Our Work */}
+            <section className="ourwork-section">
+                <h2 className="ourwork-title">Our Work</h2>
+                <div className="ourwork-list">
+                    <div className="ourwork-item">
+                        <div className="ourwork-img-group">
+                            <img className="ourwork-img-main" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Iphone" />
+                            <img className="ourwork-img-thumb" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Iphone thumb" />
+                        </div>
+                        <h3 className="ourwork-name">Iphone</h3>
+                        <p className="ourwork-desc">Perfect mobilephone for everyone</p>
+                    </div>
+                    <div className="ourwork-item">
+                        <div className="ourwork-img-group">
+                            <img className="ourwork-img-main" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca" alt="Ipad" />
+                            <img className="ourwork-img-thumb" src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c" alt="Ipad thumb" />
+                        </div>
+                        <h3 className="ourwork-name">Ipad</h3>
+                        <p className="ourwork-desc">Perfect mobilephone for everyone</p>
+                    </div>
+                    <div className="ourwork-item">
+                        <div className="ourwork-img-group">
+                            <img className="ourwork-img-main" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Ipod" />
+                            <img className="ourwork-img-thumb" src="https://images.unsplash.com/photo-1465101178521-c1a2b3a8e8c7" alt="Ipod thumb" />
+                        </div>
+                        <h3 className="ourwork-name">Ipod</h3>
+                        <p className="ourwork-desc">Perfect mobilephone for everyone</p>
+                    </div>
+                </div>
+            </section>
 
             {/* Quote Section nằm dưới cùng */}
             <section className="quote-section">

@@ -3,9 +3,11 @@
 import './header.css';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const pathname = usePathname();
 
   const handleShowOffcanvas = () => setShowOffcanvas(true);
   const handleHideOffcanvas = () => setShowOffcanvas(false);
@@ -53,16 +55,16 @@ export default function Header() {
           </div>
           <ul className="nav-menu">
             <li>
-              <Link href="/" className="nav-link active">Home</Link>
+              <Link href="/" className={`nav-link${pathname === '/' ? ' active' : ''}`}>Home</Link>
             </li>
             <li>
-              <Link href="/about" className="nav-link">About</Link>
+              <Link href="/about" className={`nav-link${pathname === '/about' ? ' active' : ''}`}>About</Link>
             </li>
             <li>
-              <Link href="/services" className="nav-link">Works</Link>
+              <Link href="/services" className={`nav-link${pathname === '/services' ? ' active' : ''}`}>Works</Link>
             </li>
             <li>
-              <Link href="/contact" className="nav-link">Contact</Link>
+              <Link href="/contact" className={`nav-link${pathname === '/contact' ? ' active' : ''}`}>Contact</Link>
             </li>
           </ul>
           <div className="header-icons">
