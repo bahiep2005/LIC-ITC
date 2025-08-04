@@ -4,7 +4,7 @@ import './main.css';
 
 //Image Stack Component
 const images = [
-    // Thay các link ảnh bên dưới bằng link ảnh thực tế của bạn
+    // Thay các link ảnh bên dưới bằng link ảnh thực tế 
     'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
     'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308',
@@ -14,20 +14,26 @@ const images = [
 ];
 
 export default function ImageStack() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [dragY, setDragY] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
-    const startY = useRef(0);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const animationRef = useRef<number | null>(null);
+    // Đoạn code này sẽ tạo hiệu ứng kéo thả cho ảnh
+    // Khi kéo ảnh lên trên cùng thì chuyển về ảnh trước, kéo xuống dưới cùng thì chuyển về ảnh sau
+    // Sử dụng useState để quản lý chỉ số ảnh đang hiển thị, vị trí kéo thả và trạng thái kéo thả
+    // Sử dụng useRef để lưu trữ giá trị kéo thả ban đầu và các tham chiếu cần thiết
+    // Sử dụng useEffect để khởi tạo và dọn dẹp các sự kiện liên quan đến kéo thả
+    const [activeIndex, setActiveIndex] = useState(0); // Chỉ số ảnh đang hiển thị
+    const [dragY, setDragY] = useState(0);// Vị trí kéo thả theo trục Y
+    const [isDragging, setIsDragging] = useState(false);// Trạng thái kéo thả
+    const startY = useRef(0);// Lưu trữ vị trí kéo thả ban đầu
+    const timerRef = useRef<NodeJS.Timeout | null>(null);// Tham chiếu đến bộ đếm thời gian
+    const animationRef = useRef<number | null>(null);// Tham chiếu đến animation frame
 
+    // Tạo hiệu ứng tự động chuyển ảnh sau mỗi 5 giây
     useEffect(() => {
         timerRef.current = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % images.length);
-        }, 5000);
+            setActiveIndex((prev) => (prev + 1) % images.length);// Tăng chỉ số ảnh sau mỗi 5 giây
+        }, 5000);// Tạo bộ đếm thời gian để tự động chuyển ảnh
         return () => {
-            if (timerRef.current) clearInterval(timerRef.current);
-            if (animationRef.current) cancelAnimationFrame(animationRef.current);
+            if (timerRef.current) clearInterval(timerRef.current);// Dọn dẹp bộ đếm thời gian khi component unmount
+            if (animationRef.current) cancelAnimationFrame(animationRef.current);// Dọn dẹp animation frame khi component unmount
         };
     }, []);
 
@@ -35,8 +41,9 @@ export default function ImageStack() {
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
         startY.current = e.clientY - dragY;
-    };
+    };// Bắt đầu kéo thả, lưu vị trí kéo thả ban đầu
 
+    // Xử lý sự kiện di chuyển chuột trong quá trình kéo thả
     const handleMouseMove = (e: React.MouseEvent) => {
         if (isDragging) {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
@@ -204,3 +211,4 @@ export default function ImageStack() {
             </section>
         </>
     );
+}
